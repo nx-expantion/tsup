@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "tsup",
+  "version": "0.0.1",
+  "generators": {
+    "tsup": {
+      "factory": "./src/generators/tsup/generator",
+      "schema": "./src/generators/tsup/schema.json",
+      "description": "tsup generator"
+    }
+  }
+}
