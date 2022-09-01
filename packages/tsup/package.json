@@ -1,0 +1,18 @@
+{
+  "name": "@nx-expansion/tsup",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "dependencies": {
+    "@parcel/watcher": "2.0.5",
+    "fast-glob": "3.2.11",
+    "fs-extra": "10.1.0",
+    "ignore": "5.2.0",
+    "minimatch": "5.1.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "9.0.13",
+    "@types/minimatch": "5.1.2"
+  }
+}
