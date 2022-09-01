@@ -1,13 +1,14 @@
 import { Tree } from '@nrwl/devkit';
 import { join } from 'path';
 
-const tsupConfigString = `import { defineConfig } from 'tsup';
+const tsupConfigString = () => `import { defineConfig } from 'tsup';
 
 export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
   format: ['cjs', 'esm'],
+  dts: true,
 });
 `;
 
@@ -18,5 +19,5 @@ export function addTsupConfig(tree: Tree, projectDir: string): void {
     return;
   }
 
-  tree.write(tsupConfigPath, tsupConfigString);
+  tree.write(tsupConfigPath, tsupConfigString());
 }

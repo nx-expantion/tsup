@@ -1,9 +1,91 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "title": "Build executor",
-  "description": "",
+  "title": "tsup Build Target",
+  "description": "Builds using tsup.",
   "type": "object",
-  "properties": {},
-  "required": []
+  "properties": {
+    "entry": {
+      "$ref": "#/definitions/entryPattern",
+      "description": "List of entry."
+    },
+    "outputPath": {
+      "type": "string",
+      "description": "The output path of the generated files.",
+      "x-completion-type": "directory"
+    },
+    "tsConfig": {
+      "type": "string",
+      "description": "The path to the Typescript configuration file.",
+      "x-completion-type": "file",
+      "x-completion-glob": "tsconfig.*.json"
+    },
+    "tsupConfig": {
+      "type": "string",
+      "description": "The path to the tsup configuration file.",
+      "x-completion-type": "file",
+      "x-completion-glob": "tsup.config@(.js|.ts|.cjs|.json)"
+    },
+    "assets": {
+      "type": "array",
+      "description": "List of static assets.",
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/assetPattern"
+      }
+    }
+  },
+  "required": ["entry", "outputPath", "tsupConfig"],
+  "definitions": {
+    "entryPattern": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "assetPattern": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "glob": {
+              "type": "string",
+              "description": "The pattern to match."
+            },
+            "input": {
+              "type": "string",
+              "description": "The input directory path in which to apply 'glob'. Defaults to the project root."
+            },
+            "ignore": {
+              "description": "An array of globs to ignore.",
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string",
+              "description": "Absolute path within the output."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["glob", "input", "output"]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  }
 }

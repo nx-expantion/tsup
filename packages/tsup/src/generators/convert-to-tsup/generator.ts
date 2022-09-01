@@ -30,7 +30,8 @@ function updateProjectBuildTargets(
   projectConfiguration: ProjectConfiguration,
   projectName: string,
   projectTargets: string[]
-): void {
+) {
+  const entry: string[] = [];
   for (const target of projectTargets) {
     const targetConfiguration = projectConfiguration.targets?.[target];
     if (
@@ -40,10 +41,23 @@ function updateProjectBuildTargets(
       continue;
     }
 
-    targetConfiguration.executor = '@nx-expansion/tsup:tsup';
+    targetConfiguration.executor = '@nx-expansion/tsup:build';
+    targetConfiguration.options = {
+      entry: targetConfiguration.options?.main
+        ? [targetConfiguration.options.main]
+        : [],
+      outputPath: targetConfiguration.options?.outputPath,
+      tsConfig: targetConfiguration.options?.tsConfig,
+      tsupConfig: join(projectConfiguration.root, 'tsup.config.ts'),
+      assets: targetConfiguration.options?.assets,
+    };
   }
 
   updateProjectConfiguration(tree, projectName, projectConfiguration);
+
+  return {
+    entry,
+  };
 }
 
 async function checkTsupDependencies(

@@ -33,6 +33,9 @@ describe('convert-to-tsup generator', () => {
       targets: {
         build: {
           executor: '@nrwl/js:tsc',
+          options: {
+            main: 'packages/lib/src/index.ts',
+          },
         },
       },
     });
@@ -47,7 +50,11 @@ describe('convert-to-tsup generator', () => {
 
     expect(projectConfiguration.targets).toEqual({
       build: {
-        executor: '@nx-expansion/tsup:tsup',
+        executor: '@nx-expansion/tsup:build',
+        options: {
+          entry: ['packages/lib/src/index.ts'],
+          tsupConfig: 'packages/lib/tsup.config.ts',
+        },
       },
     });
 
@@ -67,9 +74,15 @@ describe('convert-to-tsup generator', () => {
       targets: {
         'build-1': {
           executor: '@nrwl/js:tsc',
+          options: {
+            main: 'packages/lib/src/index.ts',
+          },
         },
         'build-2': {
           executor: '@nrwl/js:tsc',
+          options: {
+            main: 'packages/lib/src/index.ts',
+          },
         },
       },
     });
@@ -87,10 +100,18 @@ describe('convert-to-tsup generator', () => {
 
     expect(projectConfiguration.targets).toEqual({
       'build-1': {
-        executor: '@nx-expansion/tsup:tsup',
+        executor: '@nx-expansion/tsup:build',
+        options: {
+          entry: ['packages/lib/src/index.ts'],
+          tsupConfig: 'packages/lib/tsup.config.ts',
+        },
       },
       'build-2': {
-        executor: '@nx-expansion/tsup:tsup',
+        executor: '@nx-expansion/tsup:build',
+        options: {
+          entry: ['packages/lib/src/index.ts'],
+          tsupConfig: 'packages/lib/tsup.config.ts',
+        },
       },
     });
 
@@ -110,6 +131,9 @@ describe('convert-to-tsup generator', () => {
       targets: {
         build: {
           executor: '@fiz/buz:exec',
+          options: {
+            main: 'packages/lib/src/index.ts',
+          },
         },
       },
     });
@@ -125,6 +149,9 @@ describe('convert-to-tsup generator', () => {
     expect(projectConfiguration.targets).toEqual({
       build: {
         executor: '@fiz/buz:exec',
+        options: {
+          main: 'packages/lib/src/index.ts',
+        },
       },
     });
 
