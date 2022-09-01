@@ -1,0 +1,53 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - '**-v[0-9].[0-9].[0-9]'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: refs/tags/<tag name>
+        required: true
+        type: string
+
+jobs:
+  setup:
+    uses: ./.github/workflows/reusable-setup.yml
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Restore node_modules
+        id: node_modules_cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: node-v${{ matrix.node }}-node-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - name: Version
+        id: version
+        run: |
+          TAG_NAME=$(echo ${{ inputs.ref || github.ref }} | sed -e "s#refs/tags/##g")
+          VERSION=$(echo $TAG_NAME | sed -E "s#.+v([0-9.]+)\$#\1#")
+          PACKAGE_NAME=$(echo $TAG_NAME | sed -E "s#(.+)-v[0-9.]+\$#\1#")
+          echo "::set-output name=tag_name::$TAG_NAME"
+          echo "::set-output name=version::$VERSION"
+          echo "::set-output name=package_name::$PACKAGE_NAME"
+      - name: Whoami
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn nx publish ${{ steps.version.outputs.package_name }}

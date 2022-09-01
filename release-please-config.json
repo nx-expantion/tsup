@@ -1,0 +1,6 @@
+{
+  "bootstrap-sha": "52374bf1b450407009cbb99b0eddc275c2b1965f",
+  "separate-pull-requests": true,
+  "packages": {},
+  "plugins": ["node-workspace"]
+}
