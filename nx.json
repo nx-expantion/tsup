@@ -6,6 +6,7 @@
     "defaultBase": "main"
   },
   "cli": {
+    "defaultCollection": "@nrwl/nx-plugin",
     "packageManager": "yarn"
   },
   "tasksRunnerOptions": {
