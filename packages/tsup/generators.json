@@ -2,11 +2,22 @@
   "$schema": "http://json-schema.org/schema",
   "name": "tsup",
   "version": "0.0.1",
+  "schematics": {
+    "convert-to-tsup": {
+      "factory": "./src/generators/convert-to-tsup/schematics",
+      "schema": "./src/generators/convert-to-tsup/schema.json",
+      "alias": ["tsup"],
+      "x-type": "library",
+      "description": "Convert a TypeScript library to compile with tsup."
+    }
+  },
   "generators": {
-    "tsup": {
-      "factory": "./src/generators/tsup/generator",
-      "schema": "./src/generators/tsup/schema.json",
-      "description": "tsup generator"
+    "convert-to-tsup": {
+      "factory": "./src/generators/convert-to-tsup/generator",
+      "schema": "./src/generators/convert-to-tsup/schema.json",
+      "alias": ["tsup"],
+      "x-type": "library",
+      "description": "Convert a TypeScript library to compile with tsup."
     }
   }
 }

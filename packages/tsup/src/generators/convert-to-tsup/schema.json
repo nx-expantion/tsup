@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "ConvertToTsup",
+  "title": "Convert a TSC library to tsup.",
+  "description": "Convert a TSC library to tsup.",
+  "examples": [
+    {
+      "command": "nx g tsup mylib",
+      "description": "Convert mylib to tsup"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Library name.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the library?",
+      "pattern": "^[a-zA-Z].*$"
+    },
+    "targets": {
+      "type": "array",
+      "description": "List of targets to convert.",
+      "items": {
+        "type": "string",
+        "description": "Target to convert."
+      },
+      "default": ["build"]
+    }
+  },
+  "required": ["project"]
+}
