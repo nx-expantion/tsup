@@ -15,7 +15,7 @@
   "dependencies": {
     "@parcel/watcher": "2.0.7",
     "fast-glob": "3.2.12",
-    "fs-extra": "10.1.0",
+    "fs-extra": "11.1.0",
     "ignore": "5.2.1",
     "minimatch": "5.1.1"
   },
