@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/nx-expansion/nx-expansion/compare/tsup-v1.0.0...tsup-v1.0.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fs-extra to v11 ([#23](https://github.com/nx-expansion/nx-expansion/issues/23)) ([4af4455](https://github.com/nx-expansion/nx-expansion/commit/4af4455637a48f450c0ede1ea0ed7c5bf4418769))
+
 ## 1.0.0 (2022-09-01)
 
 
