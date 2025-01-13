@@ -21,9 +21,9 @@
     "tslib": "2.4.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.3.0",
-    "@commitlint/config-conventional": "17.3.0",
-    "@commitlint/config-nx-scopes": "17.2.0",
+    "@commitlint/cli": "19.6.1",
+    "@commitlint/config-conventional": "19.6.0",
+    "@commitlint/config-nx-scopes": "19.5.0",
     "@nrwl/cli": "15.2.4",
     "@nrwl/devkit": "15.2.4",
     "@nrwl/eslint-plugin-nx": "15.2.4",
