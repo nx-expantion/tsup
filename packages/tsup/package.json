@@ -13,11 +13,11 @@
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {
-    "@parcel/watcher": "2.0.7",
-    "fast-glob": "3.2.12",
-    "fs-extra": "11.1.0",
-    "ignore": "5.2.1",
-    "minimatch": "5.1.1"
+    "@parcel/watcher": "2.5.1",
+    "fast-glob": "3.3.3",
+    "fs-extra": "11.3.0",
+    "ignore": "5.3.2",
+    "minimatch": "5.1.6"
   },
   "devDependencies": {
     "@types/fs-extra": "9.0.13",
